@@ -104,9 +104,13 @@ class SignInNotifier extends StateNotifier<SignInState> {
 
     final result = await repository.addUserImageToStorage(path, file);
 
-    if (result.isError) {
-      return '';
-    }
+
+if (result.isError) {
+  final context = appNotifier.navigatorKey.currentContext!;
+  ErrorDialog('サインインできませんでした。\nインターネット環境をご確認ください').show(context);
+    return UserStatus.error; 
+}
+
 
     return result.asValue!.value;
   }
