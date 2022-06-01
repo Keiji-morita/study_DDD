@@ -38,6 +38,10 @@ dependencies:
   freezed: 
   json_serializable: 
   flutter_state_notifier:
+  firebase_auth: 
+  provider:
+  cloud_firestore:
+  firebase_storage:
 
 dev_dependencies:
   flutter_test:
