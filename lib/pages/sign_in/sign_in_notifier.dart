@@ -3,18 +3,22 @@
 
 import 'dart:html';
 
+import 'package:ddd/pages/app/states/app_notifire.dart';
 import 'package:ddd/pages/sign_in/states/sign_in_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
 import '../../domain/user/user_repository.dart';
+import '../app/states/sign_in_state.dart';
+import '../app/states/user_state.dart';
+import '../widgets/dialog/error_dialog.dart';
 
 
 class SignInNotifier extends StateNotifier<SignInState> {
   SignInNotifier({
     required this.repository,
-    required this.service,
+    required this.service, required AppNotifier appNotifier,
   }) : super(const SignInState());
 
   final UserService service;
@@ -67,6 +71,7 @@ class SignInNotifier extends StateNotifier<SignInState> {
       return UserStatus.error;
     }
 
+    
     return UserStatus.success;
   }
 
@@ -99,7 +104,7 @@ class SignInNotifier extends StateNotifier<SignInState> {
     await repository.fetchUser(uid);
   }
 
-  Future<String> saveUserImage(File file, String uid) async {
+  Future saveUserImage(File file, String uid) async {
     final path = '/users/$uid';
 
     final result = await repository.addUserImageToStorage(path, file);
