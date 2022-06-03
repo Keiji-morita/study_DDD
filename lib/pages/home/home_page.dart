@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/post/post_repository.dart';
+import '../app/states/app_notifire.dart';
 import '../app/states/user_state.dart';
+import '../app/user_notifire.dart';
 import 'home_notifire.dart';
 
 class HomePage extends StatelessWidget {
